@@ -12,7 +12,7 @@
                      <div class="search-block__rel search-block__rel_active" data-rel="GRZ">
                         <input type="text" class="search-block__field-search js-gos" placeholder="VIN" value="" maxlength="14" id="form316222" ng-model="vin">
                      </div>
-                     <button class="search-block__btn-search" id="snap_vin_show_button"><span>Snap VIN</span></button>
+                     <button class="search-block__btn-search" id="snap_vin_show_button"><span>Search</span></button>
                   </div>
                </div>
             </div>
@@ -46,7 +46,7 @@
                   Record Type
             </span>
             <div class="search-block">
-               <div class="drop">
+               <div class="drop" id="drop_fff" disabled>
                   <div class="valign"><b id="milage_id">Milage</b></div>
                   <a href="#" class="drop-list"><i class="fa fa-caret-down"></i></a>
                   <span class="filter-button">
@@ -65,20 +65,20 @@
             <div class="form-search__wrap">
                <div class="search-block">
                   <div class="date-wrap search-block__rel search-block__rel_active" data-rel="GRZ">
-                     <input type="text" placeholder="Date of service" class="datepicker" ng-model="date">
+                     <input type="text" placeholder="Date of service" class="datepicker" disabled ng-model="date" id="date_field">
                      <img src="img/calendar.png" alt="calendar">
                   </div>
-                  <button type="submit" class="search-block__btn-search"><span>Add service record</span></button>
+                  <button type="submit" class="search-block__btn-search" disabled id="add_record"><span>Add service record</span></button>
                </div>
             </div>
             <span class="ic-info__title">
             Milage
             </span>
-            <input type="text" class="search-block__field-search js-gos" placeholder="Milage" value="" maxlength="14" id="form325162" ng-model="milage">
+            <input type="text" class="search-block__field-search js-gos" placeholder="0" disabled value="" maxlength="14" id="form325162" ng-model="milage">
             <span class="ic-info__title">
             Comments
             </span>
-            <input type="text" class="search-block__field-search js-gos" placeholder="Comments" value="" maxlength="14" id="form386162" ng-model="comment">
+            <textarea type="text" class="search-block__field-search-textare js-gos" disabled placeholder="Add comments here..." value="" id="form386162" ng-model="comment"></textarea>
          </form>
       </div>
    </div>

@@ -11,7 +11,6 @@ app.controller("MainController", function ($scope) {
 
         var instance = contract;
 
-
         if (Vin.web3.eth.accounts.length == 0) {
             $("#search-block__btn").attr("disabled", "disabled");
         } else {
@@ -84,7 +83,7 @@ app.controller("MainController", function ($scope) {
             }).catch(function(error) {
                 console.error(error);
                 $scope.error = error.message;
-                showErrorDialog(error.message);
+                showErrorDialog("Get VIN data size error!");
                 $("#LoadModal").hide();
             });
         }
@@ -135,7 +134,7 @@ app.controller("MainController", function ($scope) {
                 }).catch(function(error) {
                     console.error(error);
                     $scope.error = error.message;
-                    showErrorDialog(error.message);
+                    showErrorDialog("Get access error!");
                     $("#LoadModal").hide();
                 });
             });

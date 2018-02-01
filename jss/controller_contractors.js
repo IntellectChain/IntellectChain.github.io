@@ -4,9 +4,6 @@ var app = angular.module("mySimpleWalletDapp");
 
 var initRecordType = function(callbackListener) {
     //var serviceIconcArray = {1: "icon_service.png", 2: "icon_milage.png", 3: "icon_accident.png"};
-    $("#milage_id").change(function() {
-        alert( "Handler for .change() called." );
-    })
     $('#milage_id').bind("DOMSubtreeModified",function(){
         if ($('#milage_id').text().length === 0) {
             return;
@@ -41,7 +38,55 @@ var initSanpVin = function(checkCallback) {
     })
 }
 
+var currentDateString = function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+    } 
+    if(mm<10){
+        mm='0'+mm;
+    } 
+    var today = dd+'/'+mm+'/'+yyyy;
+    return today;
+}
+
 app.controller("ContractorsController", function ($scope) {
+
+    $('.drop-menu > a').on( "click", function() {
+        var LinkThis = $(this).parent();
+        if (LinkThis.find('span').hasClass('slide')) {
+            LinkThis.find('span').removeClass('slide');
+        }else {
+            $('.link span').removeClass('slide');
+            LinkThis.find('span').addClass('slide');
+        }
+        
+        return false;
+    });
+                 
+    $('.drop').on( "click", function() {
+            if (!$('#drop_fff').attr('disabled')) {
+                if($('.drop-list').hasClass('act')){
+                    $(this).find('.drop-list').removeClass('act');
+                    $(this).find('span').slideUp(300);
+                }else{
+                   $('.drop span').slideUp(300);
+                    $(this).find('.drop-list').addClass('act');
+                    
+                    $(this).find('span').slideDown(300);
+                }
+                return false;
+            }
+        });
+        
+    $('.drop span a').on( "click", function() {
+            $(this).parent().parent().find('b').text($(this).text());
+            $('.drop').find('span').slideUp(300);
+    });    
 
     Vin.init(function(contract) {
 
@@ -71,6 +116,12 @@ app.controller("ContractorsController", function ($scope) {
 
                 $("#snap_vin_searh").hide();
                 $("#snap_vin_show").show();
+
+                $("#drop_fff").removeAttr("disabled");
+                $("#date_field").removeAttr("disabled");
+                $("#add_record").removeAttr("disabled");
+                $("#form325162").removeAttr("disabled");
+                $("#form386162").removeAttr("disabled");
                 
                 $("#addRecord_vin").val(vin);
                 $("#LoadModal").hide();
@@ -78,10 +129,22 @@ app.controller("ContractorsController", function ($scope) {
             }).catch(function(error) {
                 console.error(error);
                 $scope.error = error.message;
-                showErrorDialog(error.message);
+                showErrorDialog("Get VIN data size error!");
                 $("#LoadModal").hide();
             });
         });
+
+        $("#date_field").val(currentDateString())
+        $(".datepicker").datepicker();
+        $("#form325162").val('0')
+        $("#form386162").val('')
+
+        $("#drop_fff").attr("disabled", "disabled");
+        $("#date_field").attr("disabled", "disabled");
+        $("#add_record").attr("disabled", "disabled");
+        $("#form325162").attr("disabled", "disabled");
+        $("#form386162").attr("disabled", "disabled");
+
 
         if (Vin.web3.eth.accounts.length == 0) {
             $("#search-block__btn").attr("disabled", "disabled");
@@ -114,7 +177,17 @@ app.controller("ContractorsController", function ($scope) {
             var recType = getRecType()
             console.log(recType);
 
-            $("#LoadModal").show();
+            $("#LoadModal").show(); 
+
+            if (date == undefined) {
+                date = currentDateString();
+            }
+            if (milage == undefined) {
+                milage = 0;
+            }
+            if (comment == undefined) {
+                comment = "";
+            }
 
             var unixTimeZero = Date.parse(date) / 1000;
 
@@ -124,9 +197,10 @@ app.controller("ContractorsController", function ($scope) {
                 $("#snap_vin_searh").show();
                 $("#snap_vin_show").hide();
                 
+                $("#date_field").val(currentDateString())
                 $("#form316222").val('')
-                $("#milage_id").text('')
-                $("#form325162").val('')
+                //$("#milage_id").text('')
+                $("#form325162").val('0')
                 $("#form386162").val('')
 
                 $("#LoadModal").hide();
@@ -134,7 +208,7 @@ app.controller("ContractorsController", function ($scope) {
             }).catch(function(error) {
                 console.error(error);
                 $scope.error = error.message;
-                showErrorDialog(error.message);
+                showErrorDialog("Add record error!");
                 $("#LoadModal").hide();
             });
         }

@@ -117,6 +117,10 @@ ol.name-value li span {
     border-radius: 2px 0 0 2px;
     margin-bottom: 20px;
 }
+
+.datepicker[disabled] {
+    background: #dddddd;
+}
 /*
 .datepicker {position: relative; float: left; width: 100%}
 */
@@ -134,13 +138,24 @@ ol.name-value li span {
 .ui-datepicker .ui-datepicker-prev {width: 30px; height: 33px; background: #363636; border-radius: 0px;left: 5px; border-top-left-radius: 4px; margin-left: -7px; margin-top: -3px;}
 .ui-datepicker .ui-datepicker-prev:hover {background: #454545;border-right: 2px solid #4e4e4e; top: 2px;}
 
+.search-block__field-search-textare {
+    border: 2px solid #dddddd;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    padding: 10 0 0 25px;
+    color: #808080
+    font-size: 18px;
+    border-radius: 2px 0 0 2px;
+    margin-bottom: 20px;
+}
 
 .drop {
     border: 2px solid #dddddd;
     width: 100%;
     height: 40px;
     background-color: #fff;
-    padding: 0 0px 0 25px;
+    padding: 0 0 0 25px;
     font-size: 18px;
     text-transform: uppercase;
     border-radius: 2px 0 0 2px;
@@ -152,6 +167,22 @@ ol.name-value li span {
     top: 0px;
     cursor: pointer;
     vertical-align: middle;
+}
+
+.drop[disabled] {
+    background: #dddddd;
+}
+
+.search-block__btn-search[disabled] {
+    background: #dddddd;
+}
+
+.search-block__field-search[disabled] {
+    background: #dddddd;
+}
+
+.search-block__field-search-textare[disabled] {
+    background: #dddddd;
 }
 
 .drop b {
@@ -420,12 +451,13 @@ img {
 
 .main-logo {
     display: block;
-    width: 133px;
-    height: 25px;
-    background-image: url(../img/logo.svg);
+    width: 50px;
+    height: 41px;
+    background-image: url(../img/logo_main.png);
     background-position: 50%;
+    background-size: contain;
     background-repeat: no-repeat;
-    margin-right: 45px
+    margin-right: 45px;
 }
 
 .nav-line {
@@ -435,6 +467,7 @@ img {
 .nav-line,
 .nav-line .nav-line__link {
     height: 68px;
+    width: 250px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: box;
@@ -1420,12 +1453,12 @@ input[name=capcha] {
     border: 2px solid #dddddd;
     width: 100%;
     height: 40px;
+    color: #808080
     background-color: #fff;
     padding: 0 170px 0 25px;
     font-size: 18px;
-    text-transform: uppercase;
     border-radius: 2px 0 0 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .search-block__field_error-search {

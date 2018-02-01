@@ -398,37 +398,7 @@
              }
              return false;
     });
-                              
-                 
-    $('.drop-menu > a').on( "click", function() {
-        var LinkThis = $(this).parent();
-        if (LinkThis.find('span').hasClass('slide')) {
-            LinkThis.find('span').removeClass('slide');
-        }else {
-            $('.link span').removeClass('slide');
-            LinkThis.find('span').addClass('slide');
-        }
-        
-        return false;
-    });
-                 
-    $('.drop').on( "click", function() {
-			if($('.drop-list').hasClass('act')){
-				$(this).find('.drop-list').removeClass('act');
-				$(this).find('span').slideUp(300);
-			}else{
-               $('.drop span').slideUp(300);
-				$(this).find('.drop-list').addClass('act');
-                
-				$(this).find('span').slideDown(300);
-			}
-			return false;
-		});
-		
-    $('.drop span a').on( "click", function() {
-			$(this).parent().parent().find('b').text($(this).text());
-			$('.drop').find('span').slideUp(300);
-		});                             
+                                                     
                          
                  
     ////////////////////////////////////////////////////////////////////////////////////

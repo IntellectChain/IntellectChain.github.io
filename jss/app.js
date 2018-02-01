@@ -24,7 +24,7 @@ var Vin = {
       // Set the provider for our contract
       Vin.contracts.VinConrtact.setProvider(Vin.web3Provider);
 
-      Vin.contracts.VinConrtact.at("0xf912106838462f869495c29b89a0f326b33f91d2").then(callback);
+      Vin.contracts.VinConrtact.at("0xe65d221444e0ffb634eb27ca74d69b78f359313d").then(callback);
     });
   }
 };
@@ -39,10 +39,8 @@ app.config(function($routeProvider) {
     templateUrl: 'views/contractors.html',
     controller: 'ContractorsController'
   }).when('/management', {
-    templateUrl: 'views/contractors.html',
-    controller: 'ContractorsController'
-    // templateUrl: 'views/management.html',
-    // controller: 'ManagementController'
+    templateUrl: 'views/management.html',
+    controller: 'ManagementController'
   }).otherwise({redirectTo: '/'});
 });
 
