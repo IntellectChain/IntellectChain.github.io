@@ -54,6 +54,34 @@ var currentDateString = function() {
     return today;
 }
 
+var setStatus = function(clear) {
+    if (clear) {
+        $("#date_field").val(currentDateString())
+        $(".datepicker").datepicker();
+        $("#form316222").val('')
+        $("#form325162").val('0')
+        $("#form386162").val('')
+
+        $("#snap_vin_searh").show();
+        $("#snap_vin_show").hide();
+
+        $("#drop_fff").attr("disabled", "disabled");
+        $("#date_field").attr("disabled", "disabled");
+        $("#add_record").attr("disabled", "disabled");
+        $("#form325162").attr("disabled", "disabled");
+        $("#form386162").attr("disabled", "disabled");
+    } else {
+        $("#snap_vin_searh").hide();
+        $("#snap_vin_show").show();
+
+        $("#drop_fff").removeAttr("disabled");
+        $("#date_field").removeAttr("disabled");
+        $("#add_record").removeAttr("disabled");
+        $("#form325162").removeAttr("disabled");
+        $("#form386162").removeAttr("disabled");
+    }
+}
+
 app.controller("ContractorsController", function ($scope) {
 
     $('.drop-menu > a').on( "click", function() {
@@ -113,17 +141,9 @@ app.controller("ContractorsController", function ($scope) {
                 }
                 $("#snap_vin_name").text(carsMapping[vin]);
                 $("#snap_vin_vin").text("VIN: " + vin);
-
-                $("#snap_vin_searh").hide();
-                $("#snap_vin_show").show();
-
-                $("#drop_fff").removeAttr("disabled");
-                $("#date_field").removeAttr("disabled");
-                $("#add_record").removeAttr("disabled");
-                $("#form325162").removeAttr("disabled");
-                $("#form386162").removeAttr("disabled");
-                
                 $("#addRecord_vin").val(vin);
+                setStatus(false);
+                
                 $("#LoadModal").hide();
 
             }).catch(function(error) {
@@ -134,17 +154,7 @@ app.controller("ContractorsController", function ($scope) {
             });
         });
 
-        $("#date_field").val(currentDateString())
-        $(".datepicker").datepicker();
-        $("#form325162").val('0')
-        $("#form386162").val('')
-
-        $("#drop_fff").attr("disabled", "disabled");
-        $("#date_field").attr("disabled", "disabled");
-        $("#add_record").attr("disabled", "disabled");
-        $("#form325162").attr("disabled", "disabled");
-        $("#form386162").attr("disabled", "disabled");
-
+        setStatus(true);
 
         if (Vin.web3.eth.accounts.length == 0) {
             $("#search-block__btn").attr("disabled", "disabled");
@@ -193,16 +203,7 @@ app.controller("ContractorsController", function ($scope) {
 
             //string vin, uint carType, uint recordType, uint date, uint milage, string comment
             contract.addRecord(vin, carType, recType, unixTimeZero, milage, comment).then(function() {
-                
-                $("#snap_vin_searh").show();
-                $("#snap_vin_show").hide();
-                
-                $("#date_field").val(currentDateString())
-                $("#form316222").val('')
-                //$("#milage_id").text('')
-                $("#form325162").val('0')
-                $("#form386162").val('')
-
+                setStatus(true);
                 $("#LoadModal").hide();
 
             }).catch(function(error) {

@@ -69,7 +69,7 @@ contract VinCarContract {
     function getAccess() public payable {
         if (isAllowedAddressToContract(msg.sender)
             || msg.value >= _amount){
-            _isAllowedToView[msg.sender].timeStart = now + 10 seconds * uint(msg.value) / uint(_amount);
+            _isAllowedToView[msg.sender].timeStart = now + 10 minutes * uint(msg.value) / uint(_amount);
         }
     }
     

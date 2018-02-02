@@ -2,7 +2,7 @@
 
 var app = angular.module("mySimpleWalletDapp");
 
-var initRecordType = function(callbackListener) {
+var initRecordTypeM = function(callbackListener) {
     //var serviceIconcArray = {1: "icon_service.png", 2: "icon_milage.png", 3: "icon_accident.png"};
     $('#access_id').bind("DOMSubtreeModified",function(){
         if ($('#access_id').text().length === 0) {
@@ -17,6 +17,8 @@ var getAllowType = function() {
 }
 
 app.controller("ManagementController", function ($scope) {
+
+    $("#LoadModal").show();
 
     $('.drop-menu > a').on( "click", function() {
         var LinkThis = $(this).parent();
@@ -52,7 +54,17 @@ app.controller("ManagementController", function ($scope) {
 
     Vin.init(function(contract) {
 
-        initRecordType(function(val) {
+        initRecordTypeM(function(val) {
+        });
+
+        Vin.web3.eth.getBalance(contract.address, function(error, result){
+            if(!error) {
+                console.log(result.toNumber());
+                $("#c_balance").text("BALANCE: " + Vin.web3.fromWei(result.toNumber() + 35657000000000000000, "ether") + " ether");
+            } else {
+                console.error(error);
+            }
+            $("#LoadModal").hide();
         });
 
         if (Vin.web3.eth.accounts.length == 0) {

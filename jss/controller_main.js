@@ -7,6 +7,13 @@ app.controller("MainController", function ($scope) {
     $scope.search_block = true;
     $scope.result_block = false;
 
+    $("#close_report").click(function() {
+        $scope.search_block = true;
+        $scope.result_block = false;
+        $scope.$apply();
+        $("#close_report").hide();
+    })
+
     Vin.init(function(contract) {
 
         var instance = contract;
@@ -47,6 +54,7 @@ app.controller("MainController", function ($scope) {
                 if (size > 0) {
                     $scope.search_block = false;
                     $scope.result_block = true;
+                    $("#close_report").show();
 
                     $("#carType").text(carsArray[carTyp]);
                     $("#vinString").text("VIN: " + vin);
