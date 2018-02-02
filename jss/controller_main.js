@@ -1,6 +1,15 @@
 
 var app = angular.module("mySimpleWalletDapp");
 
+var getKeyByValueMain = function(obj, value) {
+    for( var prop in obj ) {
+        if( obj.hasOwnProperty( prop ) ) {
+             if( obj[ prop ] === value )
+                 return prop;
+        }
+    }
+}
+
 app.controller("MainController", function ($scope) {
 
     $("#LoadModal").show();
@@ -50,6 +59,14 @@ app.controller("MainController", function ($scope) {
                 var carTyp = result[0].toNumber();
                 var size = result[1].toNumber();
                 console.log(size);
+
+                if (carTyp == 0) {
+                    if (!(vin in carsMapping)) {
+                        carTyp = Math.floor(Math.random() * 16) + 1;
+                    } else {
+                        carTyp == getKeyByValueMain(carsArray, carsMapping[vin]);
+                    }
+                }
 
                 if (size > 0) {
                     $scope.search_block = false;

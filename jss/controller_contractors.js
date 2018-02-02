@@ -139,11 +139,14 @@ app.controller("ContractorsController", function ($scope) {
                     carsMapping[vin] = carsArray[randomNumberBetween1and17];
                     $("#addRecord_carType").val(randomNumberBetween1and17);
                 }
+                if (carTyp == 0) {
+                    carTyp == getKeyByValue(carsArray, carsMapping[vin]);
+                }
                 $("#snap_vin_name").text(carsMapping[vin]);
                 $("#snap_vin_vin").text("VIN: " + vin);
                 $("#addRecord_vin").val(vin);
                 setStatus(false);
-                
+
                 $("#LoadModal").hide();
 
             }).catch(function(error) {
