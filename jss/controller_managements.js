@@ -60,7 +60,7 @@ app.controller("ManagementController", function ($scope) {
         Vin.web3.eth.getBalance(contract.address, function(error, result){
             if(!error) {
                 console.log(result.toNumber());
-                $("#c_balance").text("BALANCE: " + Vin.web3.fromWei(result.toNumber() + 35657000000000000000, "ether") + " ether");
+                $("#c_balance").text("BALANCE: " + Vin.web3.fromWei(result.toNumber(), "ether") + " ether");
             } else {
                 console.error(error);
             }

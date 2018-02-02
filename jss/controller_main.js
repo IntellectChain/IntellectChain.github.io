@@ -152,7 +152,7 @@ app.controller("MainController", function ($scope) {
             $("#LoadModal").show();
             Vin.init(function(contract) {
 
-                contract.getAccess({from: Vin.web3.eth.accounts[0], value: Vin.web3.toWei(0.001*variant, "ether")}).then(function() {
+                contract.getAccess({from: Vin.web3.eth.accounts[0], value: Vin.web3.toWei(0.01*variant, "ether")}).then(function() {
                     showVinData(contract, vin);
 
                     $("#LoadModal").hide();
