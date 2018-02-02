@@ -24,7 +24,7 @@ var Vin = {
       // Set the provider for our contract
       Vin.contracts.VinConrtact.setProvider(Vin.web3Provider);
 
-      Vin.contracts.VinConrtact.at("0x8b4dcb4e066f0be277cfe809c5c09df9e1131882").then(callback);
+      Vin.contracts.VinConrtact.at("0xedb8f8e241175cbb743d5573b30faffa26dfd819").then(callback);
     });
   }
 };

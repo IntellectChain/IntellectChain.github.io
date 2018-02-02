@@ -23,7 +23,7 @@ contract VinCarContract {
         uint timeStart;
     }
 
-    uint constant _amount = 1000000000000000;
+    uint constant _amount = 10000000000000000;
     address _owner;
     mapping(string =>  VinStruct) _vinStruct;
     mapping(address => ContractorStruct) _isAllowedToContract;
