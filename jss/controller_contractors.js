@@ -141,6 +141,7 @@ app.controller("ContractorsController", function ($scope) {
                 }
                 if (carTyp == 0) {
                     carTyp == getKeyByValue(carsArray, carsMapping[vin]);
+                    $("#addRecord_carType").val(carTyp);
                 }
                 $("#snap_vin_name").text(carsMapping[vin]);
                 $("#snap_vin_vin").text("VIN: " + vin);
