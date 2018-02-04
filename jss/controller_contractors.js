@@ -140,7 +140,7 @@ app.controller("ContractorsController", function ($scope) {
                     $("#addRecord_carType").val(randomNumberBetween1and17);
                 }
                 if (carTyp == 0) {
-                    carTyp == getKeyByValue(carsArray, carsMapping[vin]);
+                    carTyp = getKeyByValue(carsArray, carsMapping[vin]);
                     $("#addRecord_carType").val(carTyp);
                 }
                 $("#snap_vin_name").text(carsMapping[vin]);
@@ -204,6 +204,8 @@ app.controller("ContractorsController", function ($scope) {
             }
 
             var unixTimeZero = Date.parse(date) / 1000;
+
+            console.log("carTypecarType = " + carType);
 
             //string vin, uint carType, uint recordType, uint date, uint milage, string comment
             contract.addRecord(vin, carType, recType, unixTimeZero, milage, comment).then(function() {

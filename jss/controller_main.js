@@ -64,7 +64,7 @@ app.controller("MainController", function ($scope) {
                     if (!(vin in carsMapping)) {
                         carTyp = Math.floor(Math.random() * 16) + 1;
                     } else {
-                        carTyp == getKeyByValueMain(carsArray, carsMapping[vin]);
+                        carTyp = getKeyByValueMain(carsArray, carsMapping[vin]);
                     }
                 }
 
