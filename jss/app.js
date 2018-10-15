@@ -12,7 +12,7 @@ var Vin = {
       Vin.web3Provider = web3.currentProvider;
     } else {
       // If no injected web3 instance is detected, fallback to the TestRPC
-      Vin.web3Provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/qoN9sOKrIGdN6eiwg3Bl");//('http://localhost:8101');
+      Vin.web3Provider = new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/aea04f4dd7974d07bf20ca8ba44dbfaf");//('http://localhost:8101');
     }
     Vin.web3 = new Web3(Vin.web3Provider);
 
@@ -24,7 +24,7 @@ var Vin = {
       // Set the provider for our contract
       Vin.contracts.VinConrtact.setProvider(Vin.web3Provider);
 
-      Vin.contracts.VinConrtact.at("0xedb8f8e241175cbb743d5573b30faffa26dfd819").then(callback);
+      Vin.contracts.VinConrtact.at("0xd73573c881bb2df4e7871deb144f48ddd7e93253").then(callback);
     });
   }
 };
